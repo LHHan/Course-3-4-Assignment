@@ -19,9 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static org.androidannotations.annotations.EBean.Scope.Singleton;
 
-/**
- * Created by LeHoangHan on 3/16/2017.
- */
 @EBean(scope = Singleton)
 public class DataService {
     private Retrofit retrofit;
@@ -36,8 +33,8 @@ public class DataService {
         restServiceInterface = retrofit.create(RestServiceInterface.class);
     }
 
-    public void login(final String grant_type, final String username, final String password,
-                      final LoginSuccessListener loginSuccessListener) {
+    void login(final String grant_type, final String username, final String password,
+               final LoginSuccessListener loginSuccessListener) {
 
         restServiceInterface.login(grant_type, username, password).enqueue(new Callback<ObjectAccount>() {
             @Override
@@ -55,7 +52,7 @@ public class DataService {
         });
     }
 
-    public void loadData(final String header, final LoadDataSuccessListener loadDataSuccessListener) {
+    void loadData(final String header, final LoadDataSuccessListener loadDataSuccessListener) {
         restServiceInterface.loadData("Bearer " + header).enqueue(new Callback<ObjectFullData>() {
             @Override
             public void onResponse(Call<ObjectFullData> call, Response<ObjectFullData> response) {
